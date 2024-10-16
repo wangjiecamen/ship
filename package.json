@@ -5,20 +5,25 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": " vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@types/node": "^22.5.4",
     "@vueuse/core": "^11.0.3",
     "dayjs": "^1.11.12",
+    "pinia": "^2.2.4",
     "vue": "^3.4.37",
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
     "less": "^4.2.0",
+    "postcss-import": "^16.1.0",
+    "postcss-nesting": "^13.0.0",
+    "postcss-pxtorem": "^6.1.0",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",
