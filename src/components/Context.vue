@@ -1,21 +1,28 @@
 <template>
   <div class="context">
     <div class="mt-[10px] ml-[10px]">
-      <slot name="title"></slot>
+      <Title :icon="icon" :title="name"></Title>
     </div>
-    <div @click="goBack" class="flex cursor-pointer items-center mt-[66px] ml-[60px]">
-      <img class="size-[60px]" src="@/assets/images/back.svg" />
-      <slot name="sub-title"></slot>
+    <div @click="goBack" class="flex cursor-pointer absolute top-[150px] items-center left-[60px]">
+      <img class="size-[45px]" src="@/assets/images/back.svg" />
+      <div class="text-[#ACD1F9] text-[30px]">
+        {{ route.meta.title || useTitle.subTitle }}
+      </div>
     </div>
-    <div class="h-[470px] overflow-auto mt-[20px] mx-[50px]">
-      <slot name="context"></slot>
+    <div class="h-[470px] absolute left-1/2 -translate-x-1/2 overflow-auto w-[90%] top-[240px]">
+      <slot></slot>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
+import Title from '@/components/Title.vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useTitleStore } from '@/store/title.ts'
 
+defineProps<{ icon: string; name: string }>()
 const router = useRouter()
+const route = useRoute()
+const useTitle = useTitleStore()
 const goBack = () => {
   router.back()
 }

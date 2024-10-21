@@ -1,25 +1,21 @@
 <template>
-  <Context>
-    <template #title>
-      <Title icon="flfg.svg" title="法规查询"></Title>
-    </template>
-    <template #sub-title>
-      <div class="text-[#ACD1F9] text-[40px]">{{ data[v].title }}</div>
-    </template>
-    <template #context>
-      <div class="text-white leading-[50px]" v-for="(item, key) in data[v].content" :key="key">
-        <div class="text-[30px] my-[20px]">{{ item.title }}</div>
-        <div class="text-[20px]" v-html="item.text"></div>
-      </div>
-    </template>
+  <Context icon="flfg.svg" name="法规查询">
+    <div class="text-white leading-[50px]" v-for="(item, key) in data[v].content" :key="key">
+      <div class="text-[30px] my-[20px]">{{ item.title }}</div>
+      <div class="text-[20px]" v-html="item.text"></div>
+    </div>
   </Context>
 </template>
 <script lang="ts" setup>
 import Context from '@/components/Context.vue'
-import Title from '@/components/Title.vue'
+
 import { useRoute } from 'vue-router'
+import { useTitleStore } from '@/store/title.ts'
+
+const useTitle = useTitleStore()
 const route = useRoute()
 const v = route.query.v as keyof typeof data
+
 const data = {
   aqzy: {
     title: '安全作业',
@@ -146,6 +142,7 @@ const data = {
     ]
   }
 }
+useTitle.setSubTitle(data[v].title as unknown as string)
 </script>
 
 <style scoped lang="scss"></style>

@@ -16,56 +16,15 @@ const router = useRouter()
 const blocks = [
   {
     title: '操作指导',
-
     icon: 'czzd.svg',
     items: [
       {
         title: '常规工况',
-        path: ''
+        path: '/operation-guide/entry'
       },
       {
         title: '应急工况',
-        path: ''
-      }
-    ]
-  },
-  {
-    title: '异常处理',
-    icon: 'yccl.svg',
-    items: [
-      {
-        title: '触摸屏报警',
-        path: ''
-      },
-      {
-        title: '操作故障',
-        path: ''
-      }
-    ]
-  },
-  {
-    title: '注意事项',
-    icon: 'yccl.svg',
-    items: [
-      {
-        title: '操作流程',
-        path: ''
-      },
-      {
-        title: '设备使用',
-        path: ''
-      },
-      {
-        title: '安全防范',
-        path: ''
-      },
-      {
-        title: '环境影响',
-        path: ''
-      },
-      {
-        title: '应急处理',
-        path: ''
+        path: '/operation-guide/entry'
       }
     ]
   },
@@ -90,12 +49,42 @@ const blocks = [
         path: '/law-search?v=zyxk'
       }
     ]
+  },
+  {
+    title: '注意事项',
+    icon: 'yccl.svg',
+    items: [
+      {
+        title: '综合操作',
+        path: '/attention/entry'
+      },
+      {
+        title: '自动操作',
+        path: '/attention/entry'
+      },
+      {
+        title: '手动操作',
+        path: '/attention/entry'
+      }
+    ]
+  },
+  {
+    title: '异常处理',
+    icon: 'yccl.svg',
+    items: [
+      {
+        title: '触摸屏报警',
+        path: '/error-handler/screen-alarm'
+      },
+      {
+        title: '操作故障',
+        path: '/error-handler/operation-error'
+      }
+    ]
   }
 ]
 const goTo = (item: any) => {
-  const regex = /[?&]v=([^&]*)/
-  const match = item.path.match(regex)
-  router.push({ path: item.path, query: { v: match[1] } })
+  router.push(item.path)
 }
 </script>
 
@@ -120,7 +109,7 @@ const goTo = (item: any) => {
   }
 }
 .side-item {
-  font-size: 20px;
+  font-size: 25px;
   width: 400px;
   height: 50px;
   display: flex;
