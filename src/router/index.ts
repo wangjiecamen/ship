@@ -49,6 +49,16 @@ const routes: RouteRecordRaw[] = [
             path: 'entry',
             component: () => import('@/views/operation-guide/Entry.vue'),
             meta: { title: '工况选择' }
+          },
+          {
+            path: 'detail',
+            component: () => import('@/views/operation-guide/Detail.vue'),
+            meta: { title: '' }
+          },
+          {
+            path: 'lift',
+            component: () => import('@/views/operation-guide/Lift.vue'),
+            meta: { title: '' }
           }
         ]
       },
@@ -62,14 +72,9 @@ const routes: RouteRecordRaw[] = [
             meta: { title: '操作流程' }
           },
           {
-            path: 'auto',
-            component: () => import('@/views/attention/Entry.vue'),
-            meta: { title: '自动操作' }
-          },
-          {
-            path: 'handwork',
-            component: () => import('@/views/attention/Entry.vue'),
-            meta: { title: '手动操作' }
+            path: 'detail',
+            component: () => import('@/views/attention/Detail.vue'),
+            meta: { title: '' }
           }
         ]
       }

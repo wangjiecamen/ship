@@ -4,7 +4,7 @@
       <input
         v-model="item.checked"
         type="checkbox"
-        class="size-[30px] mr-[10px]"
+        class="size-[30px] flex-shrink-0 mr-[10px]"
         :style="{ accentColor: color }"
       />
       <div :style="{ opacity: item.checked ? 1 : 0.5 }">{{ item.content }}</div>
