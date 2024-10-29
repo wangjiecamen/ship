@@ -1,105 +1,5 @@
 <template>
-  <div class="flex items-center flex-col" v-if="showPreloadPhase1">
-    <div class="text-[#B4D7FD] text-[36px] mb-[40px] mt-[10px]">判断该位置能否预压载</div>
-    <template v-if="showPreloadResultError">
-      <div class="text-[30px] text-center">
-        <div class="text-[#FF0000]">该位置地基承载能力不足以支撑平台！</div>
-        <div class="text-[#A6A6A6] mt-[30px]">是否选择强制执行！</div>
-      </div>
-      <div class="flex justify-between mt-[20px] w-[650px]">
-        <div
-          class="button cursor-pointer text-[30px] mt-[30px] text-center"
-          @click="goToPreloadPhase2"
-        >
-          强制执行
-        </div>
-        <div class="button cursor-pointer text-[30px] mt-[30px] text-center" @click="router.back()">
-          退出预压载
-        </div>
-      </div>
-    </template>
-    <template v-else-if="showPreloadResultSuccess">
-      <div class="text-[30px] text-center text-[#00AA4E]">该位置地基承载能力允许预压载！</div>
-      <div
-        @click="goToPreloadPhase2"
-        class="button cursor-pointer text-[30px] mt-[30px] text-center"
-      >
-        确认
-      </div>
-    </template>
-    <div v-else class="mx-[550px]">
-      <div class="text-[28px] text-[#A6A6A6] flex justify-between">
-        请输入平台总垂直载荷Q：<input
-          type="number"
-          v-model="preloadQuery1.Q"
-          class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
-        />
-      </div>
-      <div class="text-[28px] text-[#A6A6A6] my-[30px] flex justify-between">
-        请输入桩靴与土体接触面积A：<input
-          type="number"
-          v-model="preloadQuery1.A"
-          class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
-        />
-      </div>
-      <div class="text-[28px] text-[#A6A6A6] flex justify-between">
-        请输入地层强度P：<input
-          type="number"
-          v-model="preloadQuery1.P"
-          class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
-        />
-      </div>
-      <div
-        @click="confirmPreloadPhase1"
-        class="button cursor-pointer relative left-1/2 -translate-x-1/2 text-[30px] mt-[30px] text-center"
-      >
-        确认
-      </div>
-    </div>
-  </div>
-  <div class="flex items-center flex-col" v-else-if="showPreloadPhase2">
-    <div class="text-[#B4D7FD] text-[36px] mb-[40px] mt-[10px]">计算预压载时压载水打入量</div>
-    <div class="text-[30px] text-[#A6A6A6] text-center" v-if="showPreloadResultSuccess">
-      <div class="mb-[20px]">
-        压载水共需加<span class="text-[#00AA4E]">{{ U.toFixed(2) }}</span
-        >吨，第一次加<span class="text-[#00AA4E]">{{ (U * 0.3).toFixed(2) }}</span
-        >吨，第二次加至<span class="text-[#00AA4E]">{{ (U * 0.75).toFixed(2) }}</span
-        >吨，第三次加至<span class="text-[#00AA4E]">{{ U.toFixed(2) }}</span
-        >吨。
-      </div>
-      <div>压载水打入量可根据现场实际地质、环境等因素调整。</div>
-
-      <div
-        @click="goToPreloadPhase3"
-        class="button cursor-pointer relative left-1/2 -translate-x-1/2 text-[30px] mt-[30px] text-center"
-      >
-        确认
-      </div>
-    </div>
-    <div v-else class="mx-[500px]">
-      <div class="text-[28px] text-[#A6A6A6] flex justify-between">
-        请输入平台总垂直载荷Q：<input
-          type="number"
-          v-model="preloadQuery1.Q"
-          class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
-        />
-      </div>
-      <div class="text-[28px] my-[30px] text-[#A6A6A6] flex justify-between">
-        请输入桩腿承受预压载力的系数K：<input
-          type="number"
-          v-model="preloadQuery1.K"
-          class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
-        />
-      </div>
-      <div
-        @click="confirmPreloadPhase2"
-        class="button cursor-pointer relative left-1/2 -translate-x-1/2 text-[30px] mt-[50px] text-center"
-      >
-        确认
-      </div>
-    </div>
-  </div>
-  <div v-else class="text-[28px]" v-for="(item, index) in types" :key="index">
+  <div class="text-[28px]" v-for="(item, index) in types" :key="index">
     <label class="cursor-pointer flex text-white mb-[20px]">
       <input v-model="item.checked" type="checkbox" class="size-[30px] flex-shrink-0 mr-[10px]" />
       <div
@@ -122,46 +22,16 @@
 import { useRoute, useRouter } from 'vue-router'
 import { useTitleStore } from '@/store/title.ts'
 import { DetailType } from '@/views/operation-guide/constants.ts'
-import { computed, reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { getImageUrl } from '@/utils/url.ts'
-const preloadQuery1 = reactive({
-  Q: '',
-  A: '',
-  P: '',
-  K: ''
-})
+
 const route = useRoute()
 const router = useRouter()
 const useTitle = useTitleStore()
 const v = route.query.v as keyof typeof DetailType
-const showPreloadPhase1 = ref(false)
-const showPreloadPhase2 = ref(false)
-const showPreloadResultError = ref(false)
-const showPreloadResultSuccess = ref(false)
-useTitle.setSubTitle(('操作指导-' + DetailType[v]) as unknown as string)
-showPreloadPhase1.value = Number(v) === DetailType.预加载
 
-const U = computed(() => (Number(preloadQuery1.K) - 1) * Number(preloadQuery1.Q))
-const goToPreloadPhase2 = () => {
-  showPreloadResultError.value = false
-  showPreloadResultSuccess.value = false
-  showPreloadPhase1.value = false
-  showPreloadPhase2.value = true
-}
-const goToPreloadPhase3 = () => {
-  showPreloadPhase2.value = false
-  showPreloadPhase1.value = false
-}
-const confirmPreloadPhase1 = () => {
-  if (Number(preloadQuery1.P) < Number(preloadQuery1.Q) / Number(preloadQuery1.A)) {
-    showPreloadResultError.value = true
-  } else {
-    showPreloadResultSuccess.value = true
-  }
-}
-const confirmPreloadPhase2 = () => {
-  showPreloadResultSuccess.value = true
-}
+useTitle.setSubTitle(('操作指导-' + DetailType[v]) as unknown as string)
+
 const valueMap = {
   [DetailType.插销失效]: [
     {
@@ -275,7 +145,7 @@ const valueMap = {
       content: '注意：桩腿CPU故障的应急操作与机旁手动操作的区别是需要人为选择背压，且没有安全保护'
     }
   ],
-  [DetailType.预加载]: [
+  [DetailType.预压载]: [
     {
       checked: false,
       content: `1.确定集中控制台的“关-控制系统-开”钥匙开关打到“开”，<img class="invert" src="${getImageUrl('yjz1.png')}"/>泵站电机已起动`
@@ -297,7 +167,7 @@ const valueMap = {
       content: `5.确定两组对角线桩腿（1#和4#、2#和3#）的提升油缸的插销全部在插销孔内
     <div>
          <div>
-           <img class="invert h-[400px] ml-[200px] mt-[20px]"  src="${getImageUrl('yjz5.svg')}"/></div>
+           <img class=" h-[400px] ml-[200px] mt-[20px]"  src="${getImageUrl('yjz5.svg')}"/></div>
             <div>若有一组提升油缸的插销不在插销孔内，则执行以下操作：</div>
             <div>5.1 将未插入的插销所对应的对角线桩腿转至“升平台”或“降平台”工况</div>
             <div>5.2 在触摸屏上选择“上环梁”</div>
@@ -459,12 +329,4 @@ const valueMap = {
 const types = ref(valueMap[v])
 </script>
 
-<style scoped>
-.button {
-  background: url('@/assets/images/button.png') no-repeat center center;
-  background-size: contain;
-  width: 200px;
-  height: 80px;
-  line-height: 80px;
-}
-</style>
+<style scoped></style>

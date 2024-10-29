@@ -69,6 +69,11 @@ const routes: RouteRecordRaw[] = [
             path: 'lift',
             component: () => import('@/views/operation-guide/Lift.vue'),
             meta: { title: '' }
+          },
+          {
+            path: 'preload',
+            component: () => import('@/views/operation-guide/Preload.vue'),
+            meta: { title: '' }
           }
         ]
       },

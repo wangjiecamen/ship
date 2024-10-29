@@ -12,7 +12,7 @@ const data = [
     title: '常规工况',
     links: [
       { name: '升平台', path: `/operation-guide/lift` },
-      { name: '预加载', path: `/operation-guide/detail?v=${DetailType['预加载']}` },
+      { name: '预压载', path: `/operation-guide/preload` },
       { name: '拔桩', path: `/operation-guide/detail?v=${DetailType['拔桩']}` }
     ]
   },
