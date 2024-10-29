@@ -1,5 +1,5 @@
 <template>
-  <Context icon="zysx.svg" name="注意事项">
+  <Context icon="zysx.svg" name="作业要点提示">
     <router-view></router-view>
   </Context>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <Context icon="yccl.svg" name="异常处理">
+  <Context icon="yccl.svg" name="异常排查处理">
     <router-view></router-view>
   </Context>
 </template>

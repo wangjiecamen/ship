@@ -29,11 +29,11 @@ const data = [
     links: [
       {
         name: '平台倾斜',
-        path: `/error-handler/operation-error/detail?v=${DetailType.平台倾斜}`
+        path: `/error-handler/operation-error/tilt`
       },
       {
         name: '插销无法拔出',
-        path: `/error-handler/operation-error/detail?v=${DetailType.插销无法拔出}`
+        path: `/error-handler/operation-error/0-28`
       },
       {
         name: '提升油缸无动作',

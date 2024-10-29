@@ -2,11 +2,11 @@
   <div class="w-[10rem] h-[5.625rem] relative flex flex-col bg">
     <div class="text-white absolute left-[30px] top-[30px] text-[20px]">{{ formatted }}</div>
     <div class="title_bg flex justify-center text-center">
-      <svg class="mt-[10px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 50" height="50">
+      <svg class="mt-[10px] h-[60px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 50">
         <defs>
           <path id="smilePath" d="M 50,25 Q 250,50 450,25" fill="transparent" />
         </defs>
-        <text font-family="Arial" font-size="40" fill="#B7DBFF">
+        <text font-family="Arial" style="font-size: 0.2rem" fill="#B7DBFF">
           <textPath href="#smilePath" startOffset="50%" text-anchor="middle">
             作业辅助决策系统
           </textPath>

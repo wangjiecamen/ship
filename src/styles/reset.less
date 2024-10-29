@@ -31,3 +31,19 @@ a {
   color: inherit;
   text-decoration: none;
 }
+input[type="number"]{
+  font-size: 20px;
+  padding: 0 10px;
+  width:150px
+}
+/* 隐藏Chrome和Safari中的增减按钮 */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 隐藏Firefox中的增减按钮 */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

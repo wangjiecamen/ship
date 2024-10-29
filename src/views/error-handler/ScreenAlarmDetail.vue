@@ -7,7 +7,7 @@
         class="size-[30px] flex-shrink-0 mr-[10px]"
         :style="{ accentColor: color }"
       />
-      <div :style="{ opacity: item.checked ? 1 : 0.5 }">{{ item.content }}</div>
+      <div :style="{ opacity: item.checked ? 0.5 : 1 }">{{ item.content }}</div>
       <a
         class="ml-[20px] text-white underline underline-offset-[8px]"
         v-if="item.button"

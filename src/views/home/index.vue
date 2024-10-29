@@ -15,7 +15,7 @@ import Title from '@/components/Title.vue'
 const router = useRouter()
 const blocks = [
   {
-    title: '操作指导',
+    title: '作业流程指导',
     icon: 'czzd.svg',
     items: [
       {
@@ -29,7 +29,7 @@ const blocks = [
     ]
   },
   {
-    title: '法律法规',
+    title: '法律法规参考',
     icon: 'flfg.svg',
     items: [
       {
@@ -51,7 +51,7 @@ const blocks = [
     ]
   },
   {
-    title: '注意事项',
+    title: '作业要点提示',
     icon: 'yccl.svg',
     items: [
       {
@@ -69,7 +69,7 @@ const blocks = [
     ]
   },
   {
-    title: '异常处理',
+    title: '异常排查处理',
     icon: 'yccl.svg',
     items: [
       {

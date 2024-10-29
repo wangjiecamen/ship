@@ -104,7 +104,7 @@
       <input v-model="item.checked" type="checkbox" class="size-[30px] flex-shrink-0 mr-[10px]" />
       <div
         class="flex flex-wrap"
-        :style="{ opacity: item.checked ? 1 : 0.5 }"
+        :style="{ opacity: item.checked ? 0.5 : 1 }"
         v-html="item.content"
       ></div>
 

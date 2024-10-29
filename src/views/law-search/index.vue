@@ -1,5 +1,5 @@
 <template>
-  <Context icon="flfg.svg" name="法规查询">
+  <Context icon="flfg.svg" name="法律法规参考">
     <div class="text-white leading-[50px]" v-for="(item, key) in data[v].content" :key="key">
       <div class="text-[30px] my-[20px]">{{ item.title }}</div>
       <div class="text-[20px]" v-html="item.text"></div>

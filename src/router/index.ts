@@ -25,6 +25,16 @@ const routes: RouteRecordRaw[] = [
             meta: { title: '操作故障' }
           },
           {
+            path: 'operation-error/tilt',
+            component: () => import('@/views/error-handler/Tilt.vue'),
+            meta: { title: '' }
+          },
+          {
+            path: 'operation-error/0-28',
+            component: () => import('@/views/error-handler/BoltCannotPullout.vue'),
+            meta: { title: '' }
+          },
+          {
             path: 'screen-alarm',
             component: () => import('@/views/error-handler/ScreenAlarm.vue'),
             meta: { title: '触摸屏报警' }

@@ -2,7 +2,7 @@
   <div class="text-[28px]" v-for="(item, index) in types" :key="index">
     <label class="cursor-pointer flex items-start text-white mb-[20px]">
       <input v-model="item.checked" type="checkbox" class="size-[30px] flex-shrink-0 mr-[10px]" />
-      <div :style="{ opacity: item.checked ? 1 : 0.5 }" v-html="item.content"></div>
+      <div :style="{ opacity: item.checked ? 0.5 : 1 }" v-html="item.content"></div>
       <a
         class="ml-[20px] text-white underline underline-offset-[8px]"
         v-if="item.button"
@@ -22,7 +22,7 @@ import { ref } from 'vue'
 const route = useRoute()
 const useTitle = useTitleStore()
 const v = route.query.v as keyof typeof DetailType
-useTitle.setSubTitle(('操作故障-' + DetailType[v]) as unknown as string)
+useTitle.setSubTitle(('操作故障-' + DetailType[v].replace(/\d+/g, '')) as unknown as string)
 const valueMap = {
   [DetailType.提升油缸无动作]: [
     {
@@ -154,6 +154,33 @@ const valueMap = {
     {
       checked: false,
       content: '检查电子水平仪安装处是否有人为破坏变形，导致基准面不符'
+    }
+  ],
+  [DetailType.插销无法拔出1]: [
+    {
+      checked: false,
+      content:
+        '先逐一排除以下故障可能：\n' +
+        '桩腿倾斜、平台倾斜、销孔内有异物或海生物、插销油缸打开导致控制油压过低、环梁导向与腿间隙过大使环梁倾斜、上插销与下插销间隙过大导致插销因异物磨损严重\n' +
+        '若不存在上述情况，考虑是由于插销机械动作时间长于电气动作时间，此时只需重新拔出即可将插销拔出脱开'
+    },
+    {
+      checked: false,
+      content: '如果环梁上的四只插销，仅部分插销拔出，此时应将插销重新插入插销孔内，重复拔出插销'
+    }
+  ],
+  [DetailType.插销无法拔出2]: [
+    {
+      checked: false,
+      content: `安排人员先到机旁进行检查`
+    },
+    {
+      checked: false,
+      content: '首先排除是否为接近开关故障'
+    },
+    {
+      checked: false,
+      content: '观察插销和插销孔的相对位置，再进行提升油缸和插销油缸的动作'
     }
   ]
 }

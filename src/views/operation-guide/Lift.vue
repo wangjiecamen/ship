@@ -30,14 +30,14 @@
           请输入地层深度H：<input
             type="number"
             v-model="riseQuery.H"
-            class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
+            class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"
           />
         </div>
         <div class="text-[28px] text-[#A6A6A6] my-[30px] flex justify-between">
           请输入平台正常作业水深h：<input
             type="number"
             v-model="riseQuery.h"
-            class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
+            class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"
           />
         </div>
 
@@ -69,21 +69,21 @@
           请输入平台总垂直载荷Q：<input
             type="number"
             v-model="riseQuery.Q"
-            class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
+            class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"
           />
         </div>
         <div class="text-[28px] my-[30px] text-[#A6A6A6] flex justify-between">
           请输入桩靴与土体接触面积A：<input
             type="number"
             v-model="riseQuery.A"
-            class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
+            class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"
           />
         </div>
         <div class="text-[28px] my-[30px] text-[#A6A6A6] flex justify-between">
           请输入土壤极限承载力qu：<input
             type="number"
             v-model="riseQuery.qu"
-            class="bg-[#144270] w-[100px] h-[40px] border-none text-[#A6A6A6]"
+            class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"
           />
         </div>
         <div
