@@ -7,15 +7,19 @@
         :style="{ opacity: item.checked ? 0.5 : 1 }"
         v-html="item.content"
       ></div>
-
-      <a
-        class="ml-[20px] text-white underline underline-offset-[8px]"
-        v-if="item.button"
-        @click="item.button.link"
-      >
-        {{ item.button.name }} >
-      </a>
     </label>
+    <template v-if="item.children">
+      <div v-for="i in item.children">
+        <label class="cursor-pointer ml-[10px] flex text-white text-[25px] mb-[20px]">
+          <input v-model="i.checked" type="checkbox" class="size-[25px] flex-shrink-0 mr-[10px]" />
+          <div
+            class="flex flex-wrap"
+            :style="{ opacity: i.checked ? 0.5 : 1 }"
+            v-html="i.content"
+          ></div>
+        </label>
+      </div>
+    </template>
   </div>
 </template>
 <script lang="ts" setup>
@@ -26,7 +30,7 @@ import { ref } from 'vue'
 import { getImageUrl } from '@/utils/url.ts'
 
 const route = useRoute()
-const router = useRouter()
+
 const useTitle = useTitleStore()
 const v = route.query.v as keyof typeof DetailType
 
@@ -164,18 +168,35 @@ const valueMap = {
     },
     {
       checked: false,
+      children: [
+        {
+          checked: false,
+          content: `<div>5.1 将未插入的插销所对应的对角线桩腿转至“升平台”或“降平台”工况</div>`
+        },
+        {
+          checked: false,
+          content: `<div>5.2 在触摸屏上选择“上环梁”</div>  `
+        },
+        {
+          checked: false,
+          content: `
+            <div>5.3 在集中控制台将手柄打至“上插销拔出+环梁上升”</div>
+             <img class="invert" src="${getImageUrl('yjz6.png')}"/>
+           `
+        },
+        {
+          checked: false,
+          content: `
+            <div>5.4 待上插销插入插销孔后，手柄回中。</div>`
+        }
+      ],
       content: `5.确定两组对角线桩腿（1#和4#、2#和3#）的提升油缸的插销全部在插销孔内
     <div>
          <div>
            <img class=" h-[400px] ml-[200px] mt-[20px]"  src="${getImageUrl('yjz5.svg')}"/></div>
             <div>若有一组提升油缸的插销不在插销孔内，则执行以下操作：</div>
-            <div>5.1 将未插入的插销所对应的对角线桩腿转至“升平台”或“降平台”工况</div>
-            <div>5.2 在触摸屏上选择“上环梁”</div>
-            <div>5.3 在集中控制台将手柄打至“上插销拔出+环梁上升”</div>
-             <img class="invert" src="${getImageUrl('yjz6.png')}"/>
-            <div>5.4 待上插销插入插销孔后，手柄回中。</div>
-</div>
-</div>
+        </div>
+    </div>
 `
     },
     {

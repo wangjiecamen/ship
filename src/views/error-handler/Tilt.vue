@@ -80,8 +80,10 @@ const select = (num: number) => {
   selected.value = num
 }
 const showCheckList = (isAuto: boolean) => {
-  auto.value = isAuto
-  show.value = true
+  if (selected.value) {
+    auto.value = isAuto
+    show.value = true
+  }
 }
 
 const data = ref({

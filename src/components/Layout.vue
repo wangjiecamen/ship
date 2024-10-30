@@ -1,6 +1,8 @@
 <template>
-  <div class="w-[10rem] h-[5.625rem] relative flex flex-col bg">
-    <div class="text-white absolute left-[30px] top-[30px] text-[20px]">{{ formatted }}</div>
+  <div class="relative w-[10rem] h-[5.625rem] relative flex flex-col bg">
+    <div class="text-white absolute left-[30px] top-[30px] text-[20px]">
+      {{ formatted }}
+    </div>
     <div class="title_bg flex justify-center text-center">
       <svg class="mt-[10px] h-[60px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 50">
         <defs>
@@ -13,12 +15,12 @@
         </text>
       </svg>
     </div>
-    <div class="absolute right-[50px] top-[30px] cursor-pointer text-white text-[20px]">
+    <div class="absolute z-10 right-[50px] top-[30px] cursor-pointer text-white text-[20px]">
       <div v-if="userStore.user" class="flex items-center" @click="logout">
         <img class="size-[40px]" src="@/assets/images/logout.svg" alt="" />
         <span class="ml-[10px]">{{ userStore.user.name }}</span>
       </div>
-      <div class="flex items-center" v-else @click="login">
+      <div class="flex items-center" @click="login" v-else>
         <img class="size-[40px]" src="@/assets/images/user.svg" alt="" />
         <span class="ml-[10px]">登录</span>
       </div>
@@ -33,17 +35,22 @@
       <img class="w-full" src="@/assets/images/b-d.png" />
     </div>
     <router-view></router-view>
+    <div class="absolute inset-0" v-if="showLogin">
+      <div class="bg-black opacity-80 size-full"></div>
+      <div class="login-bg z-10 absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2"></div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { useDateFormat, useNow } from '@vueuse/core'
 import { useUserStore } from '@/store/user.ts'
-
+import { ref } from 'vue'
+const showLogin = ref(false)
 const userStore = useUserStore()
 const formatted = useDateFormat(useNow(), 'YYYY/MM/DD HH:mm')
 
 const login = () => {
-  userStore.login()
+  userStore.login({ username: 'admin', password: 'admin' })
 }
 const logout = () => {
   userStore.logout()
@@ -61,6 +68,12 @@ const logout = () => {
   width: 100%;
   height: 120px;
   background: url('@/assets/images/home-title-bg.png') no-repeat center center;
+  background-size: contain;
+}
+.login-bg {
+  width: 400px;
+  height: 200px;
+  background: url('@/assets/images/bg-2.png') no-repeat center center;
   background-size: contain;
 }
 </style>
