@@ -8,8 +8,11 @@ onMounted(() => {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res)
-      useUser.setUser({ name: res.username })
+      if (res.code == 200) {
+        useUser.setUser({ name: res.username })
+      } else {
+        useUser.setUser(null)
+      }
     })
     .catch(() => {
       useUser.setUser(null)

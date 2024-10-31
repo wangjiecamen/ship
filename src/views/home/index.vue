@@ -12,7 +12,10 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import Title from '@/components/Title.vue'
+import { useUserStore } from '@/store/user.ts'
+
 const router = useRouter()
+const useUser = useUserStore()
 const blocks = [
   {
     title: '作业流程指导',
@@ -84,7 +87,11 @@ const blocks = [
   }
 ]
 const goTo = (item: any) => {
-  router.push(item.path)
+  if (useUser.user) {
+    router.push(item.path)
+  } else {
+    useUser.showLogin = true
+  }
 }
 </script>
 

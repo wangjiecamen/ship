@@ -5,31 +5,40 @@ type User = {
 } | null
 
 export const useUserStore = defineStore('user', {
-  state: (): { user: User } => {
+  state: (): { user: User; showLogin: boolean } => {
     return {
-      user: null
+      user: null,
+      showLogin: false
     }
   },
   actions: {
     login(payload: { username: string; password: string }) {
-      fetch(import.meta.env.VITE_APP_BASE_URL + '/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
+      return new Promise((resolve, reject) => {
+        fetch(import.meta.env.VITE_APP_BASE_URL + '/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.code === 200) {
+              this.setUser({ name: res.username })
+              localStorage.setItem('token', res.token)
+              resolve(true)
+            } else {
+              reject(res.message)
+            }
+          })
+          .catch((err) => {
+            reject(err)
+          })
       })
-        .then((res) => res.json())
-        .then((res) => {
-          this.setUser({ name: res.username })
-          localStorage.setItem('token', res.token)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     },
     logout() {
       this.setUser(null)
+      localStorage.removeItem('token')
     },
     setUser(user: User) {
       this.user = user

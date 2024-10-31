@@ -20,7 +20,7 @@
         <img class="size-[40px]" src="@/assets/images/logout.svg" alt="" />
         <span class="ml-[10px]">{{ userStore.user.name }}</span>
       </div>
-      <div class="flex items-center" @click="login" v-else>
+      <div class="flex items-center" @click="showLogin = true" v-else>
         <img class="size-[40px]" src="@/assets/images/user.svg" alt="" />
         <span class="ml-[10px]">登录</span>
       </div>
@@ -35,22 +35,57 @@
       <img class="w-full" src="@/assets/images/b-d.png" />
     </div>
     <router-view></router-view>
-    <div class="absolute inset-0" v-if="showLogin">
-      <div class="bg-black opacity-80 size-full"></div>
-      <div class="login-bg z-10 absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2"></div>
+    <div class="absolute inset-0" v-if="userStore.showLogin">
+      <div class="bg-[#2F5584] opacity-80 size-full"></div>
+      <div
+        class="w-[600px] bg-[#14305C] h-[400px] z-10 absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2"
+      >
+        <div class="text-white text-center text-[30px] mt-[50px]">欢迎登录</div>
+        <div class="leading-[30px] flex flex-col items-center mt-[50px]">
+          <input
+            v-model="user.username"
+            class="border h-[50px] px-[10px] mb-[30px] w-[300px] border-1 border-white rounded-[10px]"
+            placeholder="请输入账号"
+          />
+
+          <input
+            v-model="user.password"
+            class="border h-[50px] px-[10px] w-[300px] border-1 border-white rounded-[10px]"
+            type="password"
+            placeholder="请输入密码"
+          />
+          <div
+            class="text-red-600 text-[20px] bottom-[90px] absolute text-center"
+            v-if="loginError"
+          >
+            {{ loginError }}
+          </div>
+          <button
+            @click="login"
+            class="text-[22px] cursor-pointer border-none rounded-[10px] mt-[40px] text-white bg-[#0070C0] h-[50px] w-[120px]"
+          >
+            登录
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { useDateFormat, useNow } from '@vueuse/core'
 import { useUserStore } from '@/store/user.ts'
-import { ref } from 'vue'
-const showLogin = ref(false)
+import { reactive, ref } from 'vue'
+const loginError = ref('')
 const userStore = useUserStore()
 const formatted = useDateFormat(useNow(), 'YYYY/MM/DD HH:mm')
-
-const login = () => {
-  userStore.login({ username: 'admin', password: 'admin' })
+const user = reactive({ username: '', password: '' })
+const login = async () => {
+  try {
+    await userStore.login({ username: user.username, password: user.password })
+    userStore.showLogin = false
+  } catch (error) {
+    loginError.value = error
+  }
 }
 const logout = () => {
   userStore.logout()
@@ -68,12 +103,6 @@ const logout = () => {
   width: 100%;
   height: 120px;
   background: url('@/assets/images/home-title-bg.png') no-repeat center center;
-  background-size: contain;
-}
-.login-bg {
-  width: 400px;
-  height: 200px;
-  background: url('@/assets/images/bg-2.png') no-repeat center center;
   background-size: contain;
 }
 </style>
