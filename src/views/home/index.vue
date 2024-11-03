@@ -87,11 +87,7 @@ const blocks = [
   }
 ]
 const goTo = (item: any) => {
-  if (useUser.user) {
-    router.push(item.path)
-  } else {
-    useUser.showLogin = true
-  }
+  router.push(item.path)
 }
 </script>
 
