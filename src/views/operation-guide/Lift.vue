@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center flex-col">
     <template v-if="showPhase1">
-      <div class="text-[#B4D7FD] text-[36px] mb-[40px] mt-[10px]">判断能否插桩</div>
+      <div class="text-[#B4D7FD] text-[36px] mb-[60px] mt-[10px]">判断能否插桩</div>
       <template v-if="showResultError">
         <div class="text-[30px] text-center">
           <div class="text-[#FF0000]">该位置无法实现有效插桩！</div>
@@ -21,7 +21,7 @@
       </template>
       <template v-else-if="showResultSuccess">
         <div class="text-[30px] text-center text-[#00AA4E]">该位置地基承载能力允许插桩！</div>
-        <div @click="goToPhase2" class="button cursor-pointer text-[30px] mt-[30px] text-center">
+        <div @click="goToPhase2" class="button cursor-pointer text-[30px] my-[80px] text-center">
           确认
         </div>
       </template>
@@ -33,7 +33,7 @@
             class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"
           />
         </div>
-        <div class="text-[28px] text-[#A6A6A6] my-[30px] flex justify-between">
+        <div class="text-[28px] text-[#A6A6A6] my-[50px] flex justify-between">
           请输入平台正常作业水深h：<input
             type="number"
             v-model="riseQuery.h"
@@ -50,7 +50,7 @@
       </div>
     </template>
     <div v-if="showPhase2" class="flex items-center flex-col">
-      <div class="text-[#B4D7FD] text-[36px] mb-[40px] mt-[10px]">计算桩腿入泥标准值</div>
+      <div class="text-[#B4D7FD] text-[36px] mb-[50px] mt-[10px]">计算桩腿入泥标准值</div>
       <div class="text-[30px] text-center" v-if="showResultSuccess">
         <div class="mb-[20px] text-[#A6A6A6]">
           桩腿入泥深度标准值为<span class="text-[#00AA4E]">{{
@@ -59,7 +59,7 @@
         </div>
         <div
           @click="goToPhase3"
-          class="button cursor-pointer relative left-1/2 -translate-x-1/2 text-[30px] mt-[30px] text-center"
+          class="button cursor-pointer relative left-1/2 -translate-x-1/2 text-[30px] mt-[80px] text-center"
         >
           确认
         </div>

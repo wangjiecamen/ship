@@ -126,7 +126,7 @@ const valueMap = {
   [DetailType.桩腿CPU故障]: [
     {
       checked: false,
-      content: `<div class="flex items-start">在机旁控制箱将“关-应急控制-开”的钥匙开关打开，接下来操作均在机旁控制箱进行<img class="size-[100px]" src="${getImageUrl('error-1.svg')}"/></div>`
+      content: `<div class="flex items-start">在机旁控制箱将“关-应急控制-开”的钥匙开关打开，接下来操作均在机旁控制箱进行<img class="invert w-[220px] h-[150px]" src="${getImageUrl('cpu_error.png')}"/></div>`
     },
     {
       checked: false,
@@ -135,13 +135,15 @@ const valueMap = {
     },
     {
       checked: false,
-      content: `判断平台位置，并选择背压档位：</br>
-            A.若平台在水面以上:</br>
-            <span class="ml-[20px]">a.若需降平台，选择背压的0档：此时，X环梁的插销承受平台负载，且环梁上升</span></br>
-            <span  class="ml-[20px]">b.若需升平台，选择背压的3档：此时，X环梁的插销承受平台负载或所选环梁的插销在插销孔外，且环梁下降</span></br>
-            B.若平台在水面漂浮：</br>
-             <span  class="ml-[20px]">a.若需升桩腿，选择背压的1档：此时，X环梁上升</span></br>
-             <span  class="ml-[20px]">b.若需降桩腿，选择背压的2档：此时，X环梁的插销承受桩腿负载，且环梁下降</span></br>
+      content: `<div>判断平台位置，并选择背压档位：</div>
+<div>
+            <div>A.若平台在水面以上:</div>
+            <div class="ml-[20px]">a.若需降平台，选择背压的0档：此时，X环梁的插销承受平台负载，且环梁上升</div>
+            <div  class="ml-[20px]">b.若需升平台，选择背压的3档：此时，X环梁的插销承受平台负载或所选环梁的插销在插销孔外，且环梁下降</div>
+            <div>B.若平台在水面漂浮：</div>
+             <div  class="ml-[20px]">a.若需升桩腿，选择背压的1档：此时，X环梁上升</div>
+             <div  class="ml-[20px]">b.若需降桩腿，选择背压的2档：此时，X环梁的插销承受桩腿负载，且环梁下降</div>
+</div>
 `
     },
     {
@@ -152,19 +154,19 @@ const valueMap = {
   [DetailType.预压载]: [
     {
       checked: false,
-      content: `1.确定集中控制台的“关-控制系统-开”钥匙开关打到“开”，<img class="invert" src="${getImageUrl('yjz1.png')}"/>泵站电机已起动`
+      content: `1.确定集中控制台的“关-控制系统-开”钥匙开关打到“开”，<img class="invert w-[198px] h-[130px]" src="${getImageUrl('yjz1.png')}"/>泵站电机已起动`
     },
     {
       checked: false,
-      content: `2.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制 <img class="invert" src="${getImageUrl('yjz2.png')}"/>`
+      content: `2.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制 <img class="invert w-[150px] h-[150px]" src="${getImageUrl('yjz2.png')}"/>`
     },
     {
       checked: false,
-      content: `3.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到5，表明为预压载工况<img class="invert" src="${getImageUrl('yjz3.svg')}"/>`
+      content: `3.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到5，表明为预压载工况<img class="invert w-[200px] h-[140px]" src="${getImageUrl('yjz3.svg')}"/>`
     },
     {
       checked: false,
-      content: `4.确定集中控制台的“自动-手动”控制模式选择开关打到“手动” <img class="invert" src="${getImageUrl('yjz4.svg')}/>`
+      content: `4.确定集中控制台的“自动-手动”控制模式选择开关打到“手动”<img class="invert w-[150px] h-[150px]" src="${getImageUrl('yjz4.svg')}"/>`
     },
     {
       checked: false,
@@ -181,7 +183,7 @@ const valueMap = {
           checked: false,
           content: `
             <div>5.3 在集中控制台将手柄打至“上插销拔出+环梁上升”</div>
-             <img class="invert" src="${getImageUrl('yjz6.png')}"/>
+             <img class="invert w-[400px] h-[250px]" src="${getImageUrl('yjz6.png')}"/>
            `
         },
         {
@@ -193,7 +195,7 @@ const valueMap = {
       content: `5.确定两组对角线桩腿（1#和4#、2#和3#）的提升油缸的插销全部在插销孔内
     <div>
          <div>
-           <img class=" h-[400px] ml-[200px] mt-[20px]"  src="${getImageUrl('yjz5.svg')}"/></div>
+           <img class=" h-[400px] w-[200px] ml-[200px] mt-[20px]"  src="${getImageUrl('yjz5.svg')}"/></div>
             <div>若有一组提升油缸的插销不在插销孔内，则执行以下操作：</div>
         </div>
     </div>
@@ -202,8 +204,8 @@ const valueMap = {
     {
       checked: false,
       content: `6.将一组对角线桩腿的控制手柄打到环梁下降位置
-                <img class="invert" src="${getImageUrl('yjz7.svg')}"/>或
-                <img class="invert" src="${getImageUrl('yjz8.svg')}"/>`
+                <img class="invert w-[300px] h-[250px]" src="${getImageUrl('yjz7.svg')}"/>或
+                <img class="invert w-[300px] h-[250px]" src="${getImageUrl('yjz8.svg')}"/>`
     },
     {
       checked: false,
@@ -223,32 +225,46 @@ const valueMap = {
   [DetailType.拔桩]: [
     {
       checked: false,
-      content: `1.确定集中控制台的“关-控制系统-开”钥匙开关打到“开”，泵站电机已起动<img class="invert" src="${getImageUrl('bz1.svg')}"/>`
+      content: `1.确定集中控制台的“关-控制系统-开”钥匙开关打到“开”，泵站电机已起动<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz1.svg')}"/>`
     },
     {
       checked: false,
-      content: `2.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”<img class="invert" src="${getImageUrl('bz2.svg')}"/>`
+      content: `2.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz2.svg')}"/>`
     },
     {
       checked: false,
-      content: `3.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到6，表明为拔桩工况<img class="invert" src="${getImageUrl('bz3.svg')}"/>`
+      content: `3.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到6，表明为拔桩工况<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz3.svg')}"/>`
     },
     {
       checked: false,
-      content: `4.确定集中控制台的“自动-手动”控制模式选择开关打到“手动”<img class="invert" src="${getImageUrl('bz4.svg')}"/>`
+      content: `4.确定集中控制台的“自动-手动”控制模式选择开关打到“手动”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz4.svg')}"/>`
     },
     {
+      children: [
+        {
+          checked: false,
+          content: `5.1 将未插入的插销所对应的对角线桩腿转至“升桩腿”或“降桩腿”工况`
+        },
+        {
+          checked: false,
+          content: `5.2 在触摸屏上选择“上环梁”`
+        },
+        {
+          checked: false,
+          content: `5.3 在集中控制台将手柄打至“上插销拔出+环梁下降”<img class="invert w-[300px] h-[200px]" src="${getImageUrl('bz6.svg')}"/>`
+        },
+        {
+          checked: false,
+          content: `5.4 待上插销插入插销孔后，手柄回中。`
+        }
+      ],
       checked: false,
       content: `5.确定两组对角线桩腿（1#和4#、2#和3#）的提升油缸的插销全部在插销孔内
  <div>
          <div>
-           <img class="invert h-[400px] ml-[200px] mt-[20px]"  src="${getImageUrl('bz5.svg')}"/></div>
+           <img class="w-[300px] h-[400px] ml-[200px] mt-[20px]"  src="${getImageUrl('bz5.svg')}"/></div>
             <div>若有一组提升油缸的插销不在插销孔内，则执行以下操作：</div>
-            <div>5.1 将未插入的插销所对应的对角线桩腿转至“升桩腿”或“降桩腿”工况</div>
-            <div>5.2 在触摸屏上选择“上环梁”</div>
-            <div>5.3 在集中控制台将手柄打至“上插销拔出+环梁下降”</div>
-             <img class="invert" src="${getImageUrl('bz6.svg')}"/>
-            <div>5.4 待上插销插入插销孔后，手柄回中。</div>
+
 </div>
 </div>
 
@@ -257,8 +273,8 @@ const valueMap = {
     {
       checked: false,
       content: `6.确保控制手柄打到环梁上升位置
-<img class="invert" src="${getImageUrl('bz7.svg')}"/>或
-<img class="invert" src="${getImageUrl('bz8.svg')}"/>
+<img class="invert w-[300px] h-[200px]" src="${getImageUrl('bz7.svg')}"/>或
+<img class="invert w-[300px] h-[200px]" src="${getImageUrl('bz8.svg')}"/>
 `
     },
     {
@@ -273,46 +289,44 @@ const valueMap = {
   [DetailType.手动升平台]: [
     {
       checked: false,
-      content: `1.确定集中控制台的“关-控制系统-开”钥匙开关打到“开”,泵站电机已起动<img class="invert" src="${getImageUrl('spt1.svg')}"/>`
+      content: `1.确定集中控制台的“关-控制系统-开”钥匙开关打到“开”,泵站电机已起动<img class="invert w-[220px] h-[150px]" src="${getImageUrl('spt1.svg')}"/>`
     },
     {
       checked: false,
-      content: `2.确保所有上、下插销处于插入状态；上提升油缸处于短行程，下提升油缸处于长行程。<img  src="${getImageUrl('spt2.svg')}"/>`
+      content: `2.确保所有上、下插销处于插入状态；上提升油缸处于短行程，下提升油缸处于长行程。<img class="w-[500px] my-[10px] h-[300px]" src="${getImageUrl('spt2.svg')}"/>`
     },
     {
       checked: false,
-      content: `3.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”。<img class="invert" src="${getImageUrl('spt3.svg')}"/>`
+      content: `3.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”。<img class="invert  w-[200px] h-[150px]" src="${getImageUrl('spt3.svg')}"/>`
     },
     {
       checked: false,
-      content: `4.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到4，表明为升平台工况<img class="invert" src="${getImageUrl('spt4.svg')}"/>`
+      content: `4.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到4，表明为升平台工况<img class="invert w-[300px] h-[180px]" src="${getImageUrl('spt4.svg')}"/>`
     },
     {
       checked: false,
-      content: `5.确定集中控制台的“自动-手动”控制模式选择开关打到“手动”<img class="invert" src="${getImageUrl('spt5.svg')}"/>`
+      content: `5.确定集中控制台的“自动-手动”控制模式选择开关打到“手动”<img class="invert size-[180px]" src="${getImageUrl('spt5.svg')}"/>`
     },
     {
       checked: false,
-      content: `6.将桩腿的控制手柄打到“上插销拔出+环梁下降”位置<img class="invert" src="${getImageUrl('spt6.svg')}"/>
-
-<div>待上插销全部拔出插销孔，下环梁油缸缩回，上环梁油缸伸出，直到上插销再次插入插销孔
+      content: `6.将桩腿的控制手柄打到“上插销拔出+环梁下降”位置<img class="invert w-[305px] h-[179px]" src="${getImageUrl('spt6.svg')}"/>待上插销全部拔出插销孔，下环梁油缸缩回，上环梁油缸伸出，直到上插销再次插入插销孔,控制手柄回中
 <div class="flex items-center my-[10px]">
-    <img src="${getImageUrl('spt7.svg')}">
-    <img class="mx-[20px]" src="${getImageUrl('convert.png')}"/>
-    <img src="${getImageUrl('spt8.svg')}">
+    <img class="w-[230px] h-[400px]" src="${getImageUrl('spt7.svg')}">
+    <img class="mx-[20px] w-[60px] h-[40px]" src="${getImageUrl('convert.png')}"/>
+    <img class="w-[230px] h-[400px]" src="${getImageUrl('spt8.svg')}">
 </div>
-控制手柄回中
-</div>
+
+
 `
     },
     {
       checked: false,
-      content: `7.将手柄打到“下插销拔出+环梁上升”位置<img class="invert" src="${getImageUrl('spt9.svg')}"/>
-    <div>待下插销全部拔出插销孔，下环梁油缸伸出，上环梁油缸缩回，直到下插销再次插入插销孔后，</div>
+      content: `7.将手柄打到“下插销拔出+环梁上升”位置<img class="invert w-[293px h-[180px]]" src="${getImageUrl('spt9.svg')}"/>
+   待下插销全部拔出插销孔，下环梁油缸伸出，上环梁油缸缩回，直到下插销再次插入插销孔后，
     <div class="flex items-center my-[10px]">
-    <img src="${getImageUrl('spt10.svg')}">
-    <img class="mx-[20px]" src="${getImageUrl('convert.png')}"/>
-    <img src="${getImageUrl('spt11.svg')}">
+    <img class="w-[230px] h-[400px]" src="${getImageUrl('spt10.svg')}">
+    <img class="mx-[20px] w-[60px] h-[40px]" src="${getImageUrl('convert.png')}"/>
+    <img class="w-[230px] h-[400px]" src="${getImageUrl('spt11.svg')}">
 </div>
 `
     },
@@ -321,23 +335,23 @@ const valueMap = {
   [DetailType.自动升平台]: [
     {
       checked: false,
-      content: `1. 确定集中控制台的“关-控制系统-开”钥匙开关打到“开”,泵站电机已起动<img class="invert" src="${getImageUrl('zdspt1.png')}">`
+      content: `1. 确定集中控制台的“关-控制系统-开”钥匙开关打到“开”,泵站电机已起动<img class="invert w-[220px] h-[150px]" src="${getImageUrl('zdspt1.png')}">`
     },
     {
       checked: false,
-      content: `2.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”<img class="invert" src="${getImageUrl('zdspt2.svg')}">`
+      content: `2.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt2.svg')}">`
     },
     {
       checked: false,
-      content: `3.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到4，表明为升平台工况<img class="invert" src="${getImageUrl('zdspt3.svg')}">`
+      content: `3.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到4，表明为升平台工况<img class="invert w-[260px] h-[180px]" src="${getImageUrl('zdspt3.svg')}">`
     },
     {
       checked: false,
-      content: `4.确定集中控制台的“自动-手动”控制模式选择开关打到“自动”<img class="invert" src="${getImageUrl('zdspt4.svg')}">`
+      content: `4.确定集中控制台的“自动-手动”控制模式选择开关打到“自动”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt4.svg')}">`
     },
     {
       checked: false,
-      content: `5.在集中控制台的触摸屏主页上设置自动升降的节距数<img class="invert" src="${getImageUrl('zdspt5.svg')}">`
+      content: `5.在集中控制台的触摸屏主页上设置自动升降的节距数<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt5.svg')}">`
     },
     {
       checked: false,
