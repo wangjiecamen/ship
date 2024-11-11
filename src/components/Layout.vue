@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-[10rem] h-[5.625rem] relative flex flex-col bg">
-    <div class="text-white absolute left-[30px] top-[30px] text-[20px]">
+    <div class="text-white absolute left-[30px] font-bold top-[30px] text-[20px]">
       {{ formatted }}
     </div>
     <div class="title_bg flex justify-center text-center">
@@ -8,7 +8,7 @@
         <defs>
           <path id="smilePath" d="M 50,25 Q 250,50 450,25" fill="transparent" />
         </defs>
-        <text font-family="Arial" style="font-size: 0.2rem" fill="#B7DBFF">
+        <text font-family="Arial" style="font-size: 0.25rem" fill="#B7DBFF">
           <textPath href="#smilePath" startOffset="50%" text-anchor="middle">
             作业辅助决策系统
           </textPath>
@@ -18,11 +18,11 @@
     <div class="absolute z-10 right-[50px] top-[30px] cursor-pointer text-white text-[20px]">
       <div v-if="userStore.user" class="flex items-center" @click="logout">
         <img class="size-[40px]" src="@/assets/images/logout.svg" alt="" />
-        <span class="ml-[10px]">{{ userStore.user.name }}</span>
+        <span class="ml-[10px] font-bold">{{ userStore.user.name }}</span>
       </div>
       <div class="flex items-center" @click="showLogin = true" v-else>
         <img class="size-[40px]" src="@/assets/images/user.svg" alt="" />
-        <span class="ml-[10px]">登录</span>
+        <span class="ml-[10px] font-bold">登录</span>
       </div>
     </div>
     <div class="absolute left-[30px] flex h-full items-center">

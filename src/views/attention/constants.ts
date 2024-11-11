@@ -11,5 +11,6 @@ export enum DetailType {
   预压载,
   手动降平台,
   拔桩,
-  手动升桩
+  手动升桩,
+  插桩
 }

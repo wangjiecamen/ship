@@ -85,11 +85,16 @@ const routes: RouteRecordRaw[] = [
           {
             path: 'entry',
             component: () => import('@/views/attention/Entry.vue'),
-            meta: { title: '操作流程' }
+            meta: { title: '工况选择' }
           },
           {
             path: 'detail',
             component: () => import('@/views/attention/Detail.vue'),
+            meta: { title: '' }
+          },
+          {
+            path: 'auto-descending',
+            component: () => import('@/views/attention/AutoDescending.vue'),
             meta: { title: '' }
           }
         ]

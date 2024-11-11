@@ -1,17 +1,9 @@
 <template>
   <div class="text-[28px]" v-for="(item, index) in types" :key="index">
-    <label class="cursor-pointer flex text-white mb-[20px]">
+    <div class="flex text-white mb-[20px]">
       <input v-model="item.checked" type="checkbox" class="size-[30px] flex-shrink-0 mr-[10px]" />
       <div :style="{ opacity: item.checked ? 0.5 : 1 }" v-html="item.content"></div>
-
-      <a
-        class="ml-[20px] text-white underline underline-offset-[8px]"
-        v-if="item.button"
-        @click="item.button.link"
-      >
-        {{ item.button.name }} >
-      </a>
-    </label>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -19,14 +11,39 @@ import { useRoute } from 'vue-router'
 import { useTitleStore } from '@/store/title.ts'
 import { DetailType } from '@/views/attention/constants.ts'
 import { getImageUrl } from '@/utils/url.ts'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const route = useRoute()
 const useTitle = useTitleStore()
 const v = route.query.v as keyof typeof DetailType
 
 useTitle.setSubTitle(('注意事项-' + DetailType[v]) as unknown as string)
+onMounted(() => {
+  const button = document.querySelector('.button')!
+  console.log(button, 'button')
+  const inputl1 = document.querySelector('#l1') as HTMLInputElement
+  const inputm1 = document.querySelector('#m1') as HTMLInputElement
+  const inputm2 = document.querySelector('#m2') as HTMLInputElement
+  const inputl2 = document.querySelector('#l2') as HTMLInputElement
+  const inputw = document.querySelector('#w') as HTMLInputElement
 
+  button.addEventListener('click', () => {
+    console.log(inputl1.value, inputm1.value, inputm2.value, inputl2.value, inputw.value)
+
+    const result =
+      (
+        inputl1.value -
+        Math.cos(Math.atan(inputl2.value / (2 * inputl1.value)) - inputm2.value) *
+          Math.sqrt(inputl1.value ** 2 + (inputl2.value / 2) ** 2) +
+        inputl1.value -
+        Math.cos(Math.atan(inputw.value / (2 * inputl1.value)) - inputm1.value) *
+          Math.sqrt(inputl1.value ** 2 + (inputw.value / 2) ** 2)
+      ).toFixed(2) + 1
+
+    const resultDom = document.querySelector('#result')!
+    resultDom.innerHTML = `安全缓冲距离H为${result}m`
+  })
+})
 const valueMap = {
   [DetailType.通用注意事项]: [
     {
@@ -82,7 +99,16 @@ const valueMap = {
     {
       checked: false,
       content:
-        '为了使柱腿尽量在铅垂状态下进行下放，其平台倾斜度调整至≤0.2°。降桩过程中操作人员需要时刻关注平台的水平姿态'
+        '降桩前应精确测量平台作业区域的海水深度，确保其在平台设计的适用范围内，以保证桩腿在最大行程内能够接触到海床，并有足够的余量'
+    },
+    {
+      checked: false,
+      content:
+        '降桩操作在拖航完成后进行，此时平台入水约4m，靠水的浮力承载载荷，因此只能对桩腿进行升降操作，千万不能对平台进行升降操作'
+    },
+    {
+      checked: false,
+      content: '桩腿应尽量在铅垂状态下进行下放，平台倾斜度需＜0.2°'
     },
     {
       checked: false,
@@ -96,19 +122,57 @@ const valueMap = {
     },
     {
       checked: false,
-      content: '判断桩腿是否触底：观察无杆腔压力值是否明显上升或平台倾斜角度发生变化'
-    },
-    {
-      checked: false,
-      content:
-        '当某一桩腿先触底，停止该桩腿的自动下降，其他三条桩腿继续自动下降。需保证4条桩腿接触海底的时间间隔尽量短'
+      content: `当某条桩腿的桩靴底部与海床面的距离达到安全缓冲距离时（本平台为3米）时，需要停止该桩腿的下降，其他桩腿继续下降。
+        <div>安全缓冲距离计算：</div>
+        <div class="ml-[250px]">
+        <div class="flex mb-[20px]">
+        <div>
+          <span class="inline-block w-[320px]">请输入桩腿长度L1（m）</span>
+          <input id='l1' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+         <div class="ml-[50px]">
+          <span class="inline-block w-[320px]">请输入横摇角度θ1（°）</span>
+          <input id='m1' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+        </div>
+          <div class="flex mb-[20px]">
+
+         <div >
+          <span class="inline-block w-[320px]">请输入桩靴长度L2（m）</span>
+          <input id='l2' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+
+         <div class="ml-[50px]">
+          <span class="inline-block w-[320px]">请输入纵摇角度θ2（°）</span>
+          <input id='m2' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+         </div>
+         <div>
+          <span class="inline-block w-[320px]">请输入桩靴宽度W（m）</span>
+          <input id='w' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+        </div>
+        <div class="flex relative justify-center mt-[50px]">
+        <div class="button">确定</div>
+        <div id="result" class="absolute right-[300px] top-[50%] text-[#00B050] -translate-y-[50%]"></div>
+        </div>
+
+      `
     },
     {
       checked: false,
       content: '桩腿全部触底后，停止动作，切换升平台工况'
+    },
+    {
+      checked: false,
+      content: '降桩完成后，平台应在水面漂浮'
     }
   ],
   [DetailType.自动升平台]: [
+    {
+      checked: false,
+      content: `只能对平台进行升降操作，不能对桩腿进行升降操作`
+    },
     {
       checked: false,
       content: `平台提升过程中必须保持水平，倾斜度＜0.5度`
@@ -124,12 +188,13 @@ const valueMap = {
     },
     {
       checked: false,
-      content: '平台升到指定气隙后，需要用固桩块将平台各桩腿固定，避免平台晃动或因卸压而导致下降'
+      content:
+        '平台升到作业所需高度后，需要用固桩块将平台各桩腿固定，避免平台晃动或因卸压而导致下降'
     },
     {
       checked: false,
       content:
-        '升平台结束时，在保证平台倾斜角度安全情况下，尽量使多的环梁插销插入插销孔，以承受平台重量'
+        '升平台结束时，在保证平台倾斜角度安全情况下，尽量多使环梁插销插入插销孔，以承受平台重量'
     },
     {
       checked: false,
@@ -174,11 +239,34 @@ const valueMap = {
   [DetailType.自动升桩]: [
     {
       checked: false,
+      content: '升桩时，只能对桩腿进行升降，不能对平台进行升降'
+    },
+    {
+      checked: false,
       content:
-        '桩腿提升时，观察各桩腿“伸出平台底长度”指示，尽量保证四条桩腿高度相同，以免涌浪将提升慢的桩腿撞击海底造成故障。当四腿高度不同，单动某条桩腿使四条腿等高，再通过联动控制同时提升桩腿'
+        '升桩前，应确保平台的吃水深度足够，以确保平台的浮力能够承担平台和桩腿上升过程中产生的负载'
+    },
+    {
+      checked: false,
+      content:
+        '桩腿提升时，观察各桩腿“伸出平台底长度”指示，尽量保证四条桩腿高度相同，以免涌浪将提升慢的桩腿撞击海底造成故障'
+    },
+    {
+      checked: false,
+      content: '当四腿高度不同，单动某条桩腿使四条腿等高，再通过联动控制同时提升桩腿'
     }
   ],
   [DetailType.手动降桩]: [
+    {
+      checked: false,
+      content:
+        '降桩前应精确测量平台作业区域的海水深度，确保其在平台设计的适用范围内，以保证桩腿在最大行程内能够接触到海床，并有足够的余量'
+    },
+    {
+      checked: false,
+      content:
+        '降桩操作在拖航完成后进行，此时平台入水约4m，靠水的浮力承载载荷，因此只能对桩腿进行升降操作，千万不能对平台进行升降操作'
+    },
     {
       checked: false,
       content: '桩腿应尽量在铅垂状态下进行下放，平台倾斜度需＜0.2°'
@@ -204,11 +292,54 @@ const valueMap = {
     },
     {
       checked: false,
-      content:
-        '当桩腿下降插入海底时，无杆腔压力表指示将明显上升或平台明显朝一个方向偏移时，此时操作需特别加以注意'
+      content: `当某条桩腿的桩靴底部与海床面的距离达到安全缓冲距离时（本平台为2~3米）时，需要停止该桩腿的下降，其他桩腿继续下降
+        <div>安全缓冲距离计算：</div>
+        <div class="ml-[250px]">
+        <div class="flex mb-[20px]">
+        <div>
+          <span class="inline-block w-[320px]">请输入桩腿长度L1（m）</span>
+          <input id='l1' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+         <div class="ml-[50px]">
+          <span class="inline-block w-[320px]">请输入横摇角度θ1（°）</span>
+          <input id='m1' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+        </div>
+          <div class="flex mb-[20px]">
+
+         <div >
+          <span class="inline-block w-[320px]">请输入桩靴长度L2（m）</span>
+          <input id='l2' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+
+         <div class="ml-[50px]">
+          <span class="inline-block w-[320px]">请输入纵摇角度θ2（°）</span>
+          <input id='m2' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+         </div>
+         <div>
+          <span class="inline-block w-[320px]">请输入桩靴宽度W（m）</span>
+          <input id='w' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
+        </div>
+        </div>
+        <div class="flex relative justify-center mt-[50px]">
+        <div class="button">确定</div>
+        <div id="result" class="absolute right-[300px] top-[50%] text-[#00B050] -translate-y-[50%]"></div>
+        </div>
+
+
+        `
+    },
+    {
+      checked: false,
+      content: '降桩完成后，平台应在水面漂浮'
     }
   ],
   [DetailType.手动升平台]: [
+    {
+      checked: false,
+      content: '只能对平台进行升降操作，不能对桩腿进行升降操作'
+    },
     {
       checked: false,
       content: '平合提升过程中必须保证倾斜度＜0.3°'
@@ -247,7 +378,42 @@ const valueMap = {
       content: '平台升到指定气隙后，需要用固桩块将平台各桩腿固定，避免平台晃动或因卸压而导致下降'
     }
   ],
+  [DetailType.插桩]: [
+    {
+      checked: false,
+      content:
+        '插桩前，需要提前勘探海床，了解海床的土层硬度、沉积层深度及承载能力，确保海床能够保证桩腿插入并支撑平台站稳，参考地质数据了解桩腿可入泥深度'
+    },
+    {
+      checked: false,
+      content: '插桩过程中，只能对桩腿进行升降操作，不能对平台进行升降操作'
+    },
+    {
+      checked: false,
+      content:
+        '判断桩腿是否触底：观察单个桩腿载荷（单桩腿所有油缸的载荷之和）变化，载荷从桩腿自重（本平台为-1100吨）到0（此时桩腿慢慢入泥），再到1/6的船体总重（本平台的1/6船体总重为3700吨）。当单桩载荷到达1/6的船体总重说明桩腿已经入泥或到达预定位置'
+    },
+    {
+      checked: false,
+      content:
+        '当某一桩腿先触底，停止该桩腿的下降，其他三条桩腿继续下降。使4条桩腿接触海底的时间间隔尽量短'
+    },
+    {
+      checked: false,
+      content:
+        '在部分桩腿触底后，需要实时评估平台的动态载荷，当平台载荷在-1100~3700吨范围内，则说明平台安全，可以继续进行其他桩腿的下降'
+    },
+    {
+      checked: false,
+      content: '桩腿全部触底后，停止动作，切换升平台工况'
+    }
+  ],
   [DetailType.预压载]: [
+    {
+      checked: false,
+      content:
+        '预压载前，确保所有设备（如液压泵、加载装置等）功能正常，且压力系统能够稳定施加负载。还需确保波浪高度和潮汐变化在可控范围内（波高不应超过1米），以减少对设备和施加载荷的影响'
+    },
     {
       checked: false,
       content:
@@ -261,7 +427,7 @@ const valueMap = {
     {
       checked: false,
       content:
-        '预压载操作只允许对角桩腿成对进行，如先预压 2#、3#桩腿，则后压 1#、4#桩腿。在预压前观察无杆腔压力表指示位，哪对桩腿压力表数位小，就先预压哪对'
+        '预压载操作只允许对角桩腿成对进行，如先预压 2#、3#桩腿，则后压 1#、4#桩腿。在预压前观察桩腿载荷，先预压桩腿载荷之和小的一组对角桩腿'
     },
     {
       checked: false,
@@ -323,6 +489,15 @@ const valueMap = {
     }
   ],
   [DetailType.拔桩]: [
+    {
+      checked: false,
+      content:
+        '拔桩操作前，应确保平台应降至平台吃水要求（本平台为4m），避免因拔桩操作导致平台倾斜或失稳'
+    },
+    {
+      checked: false,
+      content: '拔桩操作应在良好的海洋条件下进行，波高<0.5m，风速<15节（约7.7米/秒）'
+    },
     {
       checked: false,
       content: '拔桩前需要冲桩'

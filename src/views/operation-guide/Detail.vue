@@ -1,13 +1,13 @@
 <template>
   <div class="text-[28px]" v-for="(item, index) in types" :key="index">
-    <label class="cursor-pointer flex text-white mb-[20px]">
+    <div class="flex text-white mb-[20px]">
       <input v-model="item.checked" type="checkbox" class="size-[30px] flex-shrink-0 mr-[10px]" />
       <div
         class="flex flex-wrap"
         :style="{ opacity: item.checked ? 0.5 : 1 }"
         v-html="item.content"
       ></div>
-    </label>
+    </div>
     <template v-if="item.children">
       <div v-for="i in item.children">
         <label class="cursor-pointer ml-[10px] flex text-white text-[25px] mb-[20px]">
@@ -209,17 +209,23 @@ const valueMap = {
     },
     {
       checked: false,
-      content: `7.当桩腿负荷达到预压载荷，停留15分钟。
-                <div> 平台在水中时，载荷为5600吨</div>
-            <div>平台升离水面后，载荷为9200吨</div>`
+      content: `7.当每条桩腿的负荷都达到第一阶段的预压载荷，两组对角桩腿循环压桩2~3次，每次压5分钟`
     },
     {
       checked: false,
-      content: `8.重复步骤6、7，进行另外对角线桩腿的预压`
+      content: `8.该预压阶段结束后，停留15分钟。若期间平台状态正常，再进行下一阶段`
     },
     {
       checked: false,
-      content: `9.确保所有桩腿的无杆腔压力达到预压载荷，预压载结束，将平台调平`
+      content: `9.重复步骤6~8，依次执行预压载的三个阶段`
+    },
+    {
+      checked: false,
+      content: `10.确保所有桩腿的桩腿载荷达到预压载荷，预压载结束，将平台调平`
+    },
+    {
+      checked: false,
+      content: `11.预压完毕后，平台需升离海面0.5m高，以减少平台受波浪的横向力的影响，并便于预压出现故障时平台能快速降至水中应对风险`
     }
   ],
   [DetailType.拔桩]: [
@@ -279,11 +285,11 @@ const valueMap = {
     },
     {
       checked: false,
-      content: `7.当桩腿往上移动且平台吃水不变，桩腿已拔松`
+      content: `7.选对角桩腿进行间隙交替拔桩，第一次拔桩载荷为额定拔桩力的50% （本平台为3000吨），第二次拔桩载荷为额定拔桩力的75% （本平台为4500吨），第三次拔桩载荷为额定拔桩力的100% （本平台为6000吨）`
     },
     {
       checked: false,
-      content: `8.对另一组对角线桩腿重复步骤6、7，直到平台的桩腿全部拔出海底，桩腿已拔松`
+      content: `8.当某条桩腿的载荷从额定的拔桩力值变化到桩腿自重吨，说明该桩腿已出泥`
     }
   ],
   [DetailType.手动升平台]: [

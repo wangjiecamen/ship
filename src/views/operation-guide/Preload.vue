@@ -62,9 +62,9 @@
     <div class="text-[30px] text-[#A6A6A6] text-center" v-if="showPreloadResultSuccess">
       <div class="mb-[20px]">
         压载水共需加<span class="text-[#00AA4E]">{{ U.toFixed(2) }}</span
-        >吨，第一次加<span class="text-[#00AA4E]">{{ (U * 0.3).toFixed(2) }}</span
-        >吨，第二次加至<span class="text-[#00AA4E]">{{ (U * 0.75).toFixed(2) }}</span
-        >吨，第三次加至<span class="text-[#00AA4E]">{{ U.toFixed(2) }}</span
+        >第一阶段加<span class="text-[#00AA4E]">{{ (U * 0.3).toFixed(2) }}</span
+        >吨，第二阶段加至<span class="text-[#00AA4E]">{{ (U * 0.75).toFixed(2) }}</span
+        >吨，第三阶段加至<span class="text-[#00AA4E]">{{ U.toFixed(2) }}</span
         >吨。
       </div>
       <div>压载水打入量可根据现场实际地质、环境等因素调整。</div>
