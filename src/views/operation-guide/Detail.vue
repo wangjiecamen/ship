@@ -231,41 +231,41 @@ const valueMap = {
   [DetailType.拔桩]: [
     {
       checked: false,
-      content: `1.确定集中控制台的“关-控制系统-开”钥匙开关打到“开”，泵站电机已起动<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz1.svg')}"/>`
+      content: `确定集中控制台的“关-控制系统-开”钥匙开关打到“开”，泵站电机已起动<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz1.svg')}"/>`
     },
     {
       checked: false,
-      content: `2.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz2.svg')}"/>`
+      content: `确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz2.svg')}"/>`
     },
     {
       checked: false,
-      content: `3.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到6，表明为拔桩工况<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz3.svg')}"/>`
+      content: `确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到6，表明为拔桩工况<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz3.svg')}"/>`
     },
     {
       checked: false,
-      content: `4.确定集中控制台的“自动-手动”控制模式选择开关打到“手动”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz4.svg')}"/>`
+      content: `确定集中控制台的“自动-手动”控制模式选择开关打到“手动”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('bz4.svg')}"/>`
     },
     {
       children: [
         {
           checked: false,
-          content: `5.1 将未插入的插销所对应的对角线桩腿转至“升桩腿”或“降桩腿”工况`
+          content: `将未插入的插销所对应的对角线桩腿转至“升桩腿”或“降桩腿”工况`
         },
         {
           checked: false,
-          content: `5.2 在触摸屏上选择“上环梁”`
+          content: `在触摸屏上选择“上环梁”`
         },
         {
           checked: false,
-          content: `5.3 在集中控制台将手柄打至“上插销拔出+环梁下降”<img class="invert w-[300px] h-[200px]" src="${getImageUrl('bz6.svg')}"/>`
+          content: `在集中控制台将手柄打至“上插销拔出+环梁下降”<img class="invert w-[300px] h-[200px]" src="${getImageUrl('bz6.svg')}"/>`
         },
         {
           checked: false,
-          content: `5.4 待上插销插入插销孔后，手柄回中。`
+          content: `待上插销插入插销孔后，手柄回中。`
         }
       ],
       checked: false,
-      content: `5.确定两组对角线桩腿（1#和4#、2#和3#）的提升油缸的插销全部在插销孔内
+      content: `确定两组对角线桩腿（1#和4#、2#和3#）的提升油缸的插销全部在插销孔内
  <div>
          <div>
            <img class="w-[300px] h-[400px] ml-[200px] mt-[20px]"  src="${getImageUrl('bz5.svg')}"/></div>
@@ -278,18 +278,18 @@ const valueMap = {
     },
     {
       checked: false,
-      content: `6.确保控制手柄打到环梁上升位置
+      content: `确保控制手柄打到环梁上升位置
 <img class="invert w-[300px] h-[200px]" src="${getImageUrl('bz7.svg')}"/>或
 <img class="invert w-[300px] h-[200px]" src="${getImageUrl('bz8.svg')}"/>
 `
     },
     {
       checked: false,
-      content: `7.选对角桩腿进行间隙交替拔桩，第一次拔桩载荷为额定拔桩力的50% （本平台为3000吨），第二次拔桩载荷为额定拔桩力的75% （本平台为4500吨），第三次拔桩载荷为额定拔桩力的100% （本平台为6000吨）`
+      content: `选对角桩腿进行间隙交替拔桩，第一次拔桩载荷为额定拔桩力的50% （本平台为3000吨），第二次拔桩载荷为额定拔桩力的75% （本平台为4500吨），第三次拔桩载荷为额定拔桩力的100% （本平台为6000吨）`
     },
     {
       checked: false,
-      content: `8.当某条桩腿的载荷从额定的拔桩力值变化到桩腿自重吨，说明该桩腿已出泥`
+      content: `当某条桩腿的载荷从额定的拔桩力值变化到桩腿自重吨，说明该桩腿已出泥`
     }
   ],
   [DetailType.手动升平台]: [
@@ -341,27 +341,27 @@ const valueMap = {
   [DetailType.自动升平台]: [
     {
       checked: false,
-      content: `1. 确定集中控制台的“关-控制系统-开”钥匙开关打到“开”,泵站电机已起动<img class="invert w-[220px] h-[150px]" src="${getImageUrl('zdspt1.png')}">`
+      content: `确定集中控制台的“关-控制系统-开”钥匙开关打到“开”,泵站电机已起动<img class="invert w-[220px] h-[150px]" src="${getImageUrl('zdspt1.png')}">`
     },
     {
       checked: false,
-      content: `2.确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt2.svg')}">`
+      content: `确定集中控制台的“集中控制-机旁控制”控制位置选择开关打到“集中控制”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt2.svg')}">`
     },
     {
       checked: false,
-      content: `3.确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到4，表明为升平台工况<img class="invert w-[260px] h-[180px]" src="${getImageUrl('zdspt3.svg')}">`
+      content: `确定集中控制台的“降桩-升桩-降平台-升平台-预压载-拔桩”工况选择开关打到4，表明为升平台工况<img class="invert w-[260px] h-[180px]" src="${getImageUrl('zdspt3.svg')}">`
     },
     {
       checked: false,
-      content: `4.确定集中控制台的“自动-手动”控制模式选择开关打到“自动”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt4.svg')}">`
+      content: `确定集中控制台的“自动-手动”控制模式选择开关打到“自动”<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt4.svg')}">`
     },
     {
       checked: false,
-      content: `5.在集中控制台的触摸屏主页上设置自动升降的节距数<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt5.svg')}">`
+      content: `在集中控制台的触摸屏主页上设置自动升降的节距数<img class="invert w-[200px] h-[150px]" src="${getImageUrl('zdspt5.svg')}">`
     },
     {
       checked: false,
-      content: `6.若联动：确定已按下需要进行降桩操作桩腿的“就绪”带灯按钮，待“就绪”带灯按钮常亮后，按下相应的“起动”带灯按钮，该带灯按钮常亮后，表明开始“升平台”
+      content: `若联动：确定已按下需要进行降桩操作桩腿的“就绪”带灯按钮，待“就绪”带灯按钮常亮后，按下相应的“起动”带灯按钮，该带灯按钮常亮后，表明开始“升平台”
       <div>若单动：“1#、2#、3#、4#”桩腿，选择几个需要控制的桩腿的“就绪”带灯按钮，待“就绪”带灯按钮常亮后，按下相应的“起动”带灯按钮，该带灯按钮常亮后，表明某几个桩腿开始“升平台”（一般用于调平）</div>
       `
     }

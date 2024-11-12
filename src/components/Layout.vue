@@ -20,7 +20,7 @@
         <img class="size-[40px]" src="@/assets/images/logout.svg" alt="" />
         <span class="ml-[10px] font-bold">{{ userStore.user.name }}</span>
       </div>
-      <div class="flex items-center" @click="showLogin = true" v-else>
+      <div class="flex items-center" @click="userStore.showLogin = true" v-else>
         <img class="size-[40px]" src="@/assets/images/user.svg" alt="" />
         <span class="ml-[10px] font-bold">登录</span>
       </div>
@@ -38,34 +38,41 @@
     <div class="absolute inset-0" v-if="userStore.showLogin">
       <div class="bg-[#2F5584] opacity-80 size-full"></div>
       <div
-        class="w-[600px] bg-[#14305C] h-[400px] z-10 absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2"
+        class="w-[600px] bg-white rounded-[10px] h-[600px] z-10 absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2"
       >
-        <div class="text-white text-center text-[30px] mt-[50px]">欢迎登录</div>
-        <div class="leading-[30px] flex flex-col items-center mt-[50px]">
+        <div class="flex justify-center items-center text-[30px] mt-[50px]">
+          <span class="gradient_1"></span>
+          <span class="text-[#1C4187] font-bold px-[5px]">欢迎登录</span>
+          <span class="gradient_2"></span>
+        </div>
+        <div class="leading-[30px] flex flex-col mx-[80px] mt-[100px]">
+          <div class="text-[25px] text-[#999]">用户名称</div>
           <input
             v-model="user.username"
-            class="border h-[50px] px-[10px] mb-[30px] w-[300px] border-1 border-white rounded-[10px]"
+            class="h-[50px] border-none px-[10px] mb-[30px] w-full"
             placeholder="请输入账号"
           />
-
+          <div class="text-[25px] text-[#999] mt-[50px]">用户密码</div>
           <input
             v-model="user.password"
-            class="border h-[50px] px-[10px] w-[300px] border-1 border-white rounded-[10px]"
+            class="h-[50px] border-none px-[10px] w-full"
             type="password"
             placeholder="请输入密码"
           />
           <div
-            class="text-red-600 text-[20px] bottom-[90px] absolute text-center"
+            class="text-red-600 text-[20px] bottom-[120px] -translate-x-1/2 left-1/2 absolute"
             v-if="loginError"
           >
             {{ loginError }}
           </div>
-          <button
-            @click="login"
-            class="text-[22px] cursor-pointer border-none rounded-[10px] mt-[40px] text-white bg-[#0070C0] h-[50px] w-[120px]"
-          >
-            登录
-          </button>
+          <div class="flex justify-center mt-[30px]">
+            <button
+              @click="login"
+              class="text-[22px] cursor-pointer border-none rounded-[30px] mt-[40px] text-white bg-[#094087] h-[60px] w-[300px]"
+            >
+              登录
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -104,5 +111,27 @@ const logout = () => {
   height: 120px;
   background: url('@/assets/images/home-title-bg.png') no-repeat center center;
   background-size: contain;
+}
+.gradient_1 {
+  opacity: 0.5;
+  display: inline-block;
+  width: 30%;
+  height: 5px; /* 横线的高度 */
+  background: linear-gradient(to right, rgba(14, 59, 112, 0) 0%, rgba(14, 59, 112, 1) 100%);
+}
+.gradient_2 {
+  opacity: 0.5;
+  display: inline-block;
+  width: 30%;
+  height: 5px; /* 横线的高度 */
+  background: linear-gradient(to left, rgba(14, 59, 112, 0) 0%, rgba(14, 59, 112, 1) 100%);
+}
+input {
+  border-bottom: 0.5px solid #999;
+  outline: none;
+  &::placeholder {
+    color: #999;
+    font-size: 25px;
+  }
 }
 </style>

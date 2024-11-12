@@ -8,11 +8,11 @@
               <div>{{ item.title }}</div>
             </slot>
           </div>
-          <div class="flex my-[20px] flex-col flex-1 items-center justify-around">
+          <div class="flex my-[20px] flex-col flex-1 items-center justify-between">
             <div
               @click="goTo(i.path)"
               :class="item.size === 'small' ? 'text-[25px] ' : 'text-[28px] '"
-              class="w-[80%] text-center cursor-pointer hover:bg-[#1D437F]"
+              class="w-[100%] text-center h-full flex items-center justify-center cursor-pointer hover:bg-[#1D437F]"
               v-for="i in item.links"
               :key="i.name"
             >

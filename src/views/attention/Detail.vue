@@ -10,7 +10,6 @@
 import { useRoute } from 'vue-router'
 import { useTitleStore } from '@/store/title.ts'
 import { DetailType } from '@/views/attention/constants.ts'
-import { getImageUrl } from '@/utils/url.ts'
 import { ref, onMounted } from 'vue'
 
 const route = useRoute()
@@ -32,12 +31,12 @@ onMounted(() => {
 
     const result =
       (
-        inputl1.value -
         Math.cos(Math.atan(inputl2.value / (2 * inputl1.value)) - inputm2.value) *
-          Math.sqrt(inputl1.value ** 2 + (inputl2.value / 2) ** 2) +
-        inputl1.value -
+          Math.sqrt(inputl1.value ** 2 + (inputl2.value / 2) ** 2) -
+        inputl1.value +
         Math.cos(Math.atan(inputw.value / (2 * inputl1.value)) - inputm1.value) *
-          Math.sqrt(inputl1.value ** 2 + (inputw.value / 2) ** 2)
+          Math.sqrt(inputl1.value ** 2 + (inputw.value / 2) ** 2) -
+        inputl1.value
       ).toFixed(2) + 1
 
     const resultDom = document.querySelector('#result')!
@@ -127,7 +126,7 @@ const valueMap = {
         <div class="ml-[250px]">
         <div class="flex mb-[20px]">
         <div>
-          <span class="inline-block w-[320px]">请输入桩腿长度L1（m）</span>
+          <span class="inline-block w-[320px]">请输入水深L1（m）</span>
           <input id='l1' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
         </div>
          <div class="ml-[50px]">
@@ -297,7 +296,7 @@ const valueMap = {
         <div class="ml-[250px]">
         <div class="flex mb-[20px]">
         <div>
-          <span class="inline-block w-[320px]">请输入桩腿长度L1（m）</span>
+          <span class="inline-block w-[320px]">请输入水深L1（m）</span>
           <input id='l1' type="number" class="bg-[#144270] w-[150px] h-[40px] border-none text-[#A6A6A6]"/>
         </div>
          <div class="ml-[50px]">
