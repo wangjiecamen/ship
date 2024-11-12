@@ -217,7 +217,7 @@ const valueMap = {
     },
     {
       checked: false,
-      content: `9.重复步骤1~3，依次执行预压载的三个阶段`
+      content: `重复步骤1~3，依次执行预压载的三个阶段`
     },
     {
       checked: false,
