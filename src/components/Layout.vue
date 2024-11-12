@@ -129,6 +129,7 @@ const logout = () => {
 input {
   border-bottom: 0.5px solid #999;
   outline: none;
+  font-size: 28px;
   &::placeholder {
     color: #999;
     font-size: 25px;

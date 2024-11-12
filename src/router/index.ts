@@ -102,14 +102,14 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
-// router.beforeEach((to, from, next) => {
-//   const useUser = useUserStore()
-//
-//   if (!useUser.user && to.path !== '/') {
-//     useUser.showLogin = true
-//     next('/')
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  const useUser = useUserStore()
+
+  if (!useUser.user && to.path !== '/') {
+    useUser.showLogin = true
+    next('/')
+  } else {
+    next()
+  }
+})
 export default router
