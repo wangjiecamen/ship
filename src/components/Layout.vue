@@ -36,7 +36,7 @@
     </div>
     <router-view></router-view>
     <div class="absolute inset-0" v-if="userStore.showLogin">
-      <div class="bg-[#2F5584] opacity-80 size-full"></div>
+      <div class="bg-[#2F5584] opacity-80 size-full" @click="userStore.showLogin = false"></div>
       <div
         class="w-[600px] bg-white rounded-[10px] h-[600px] z-10 absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2"
       >
