@@ -19,7 +19,6 @@ const v = route.query.v as keyof typeof DetailType
 useTitle.setSubTitle(('注意事项-' + DetailType[v]) as unknown as string)
 onMounted(() => {
   const button = document.querySelector('.button')!
-  console.log(button, 'button')
   const inputl1 = document.querySelector('#l1') as HTMLInputElement
   const inputm1 = document.querySelector('#m1') as HTMLInputElement
   const inputm2 = document.querySelector('#m2') as HTMLInputElement
@@ -28,21 +27,58 @@ onMounted(() => {
 
   button.addEventListener('click', () => {
     console.log(inputl1.value, inputm1.value, inputm2.value, inputl2.value, inputw.value)
-
-    const result =
-      (
-        Math.cos(Math.atan(inputl2.value / (2 * inputl1.value)) - inputm2.value) *
-          Math.sqrt(inputl1.value ** 2 + (inputl2.value / 2) ** 2) -
-        inputl1.value +
-        Math.cos(Math.atan(inputw.value / (2 * inputl1.value)) - inputm1.value) *
-          Math.sqrt(inputl1.value ** 2 + (inputw.value / 2) ** 2) -
+    //inputm1.value:横摇角度θ1
+    //inputm2.value:横摇角度θ2
+    //inputl1.value:水深
+    //inputl2.value:桩靴长度
+    //inputw.value:桩靴宽度
+    console.log(radiansToDegrees(Math.atan(inputl2.value / (2 * inputl1.value))) - inputm2.value)
+    console.log(
+      ((radiansToDegrees(
+        Math.cos(
+          ((radiansToDegrees(Math.atan(inputl2.value / (2 * inputl1.value))) - inputm2.value) *
+            Math.PI) /
+            180
+        )
+      ) *
+        Math.PI) /
+        180) *
+        Math.sqrt(inputl1.value ** 2 + (inputl2.value / 2) ** 2) -
         inputl1.value
-      ).toFixed(2) + 1
+    )
+    const result = (
+      ((radiansToDegrees(
+        Math.cos(
+          ((radiansToDegrees(Math.atan(inputl2.value / (2 * inputl1.value))) - inputm2.value) *
+            Math.PI) /
+            180
+        )
+      ) *
+        Math.PI) /
+        180) *
+        Math.sqrt(inputl1.value ** 2 + (inputl2.value / 2) ** 2) -
+      inputl1.value +
+      ((radiansToDegrees(
+        Math.cos(
+          ((radiansToDegrees(Math.atan(inputw.value / (2 * inputl1.value))) - inputm1.value) *
+            Math.PI) /
+            180
+        )
+      ) *
+        Math.PI) /
+        180) *
+        Math.sqrt(inputl1.value ** 2 + (inputw.value / 2) ** 2) -
+      inputl1.value +
+      1
+    ).toFixed(2)
 
     const resultDom = document.querySelector('#result')!
     resultDom.innerHTML = `安全缓冲距离H为${result}m`
   })
 })
+function radiansToDegrees(radians: number) {
+  return radians * (180 / Math.PI)
+}
 const valueMap = {
   [DetailType.通用注意事项]: [
     {
