@@ -92,11 +92,7 @@ const routes: RouteRecordRaw[] = [
             component: () => import('@/views/attention/Detail.vue'),
             meta: { title: '' }
           },
-          {
-            path: 'auto-descending',
-            component: () => import('@/views/attention/AutoDescending.vue'),
-            meta: { title: '' }
-          }
+
         ]
       }
     ]
